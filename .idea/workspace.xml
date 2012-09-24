@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ed6149d-fdc2-4b27-9d2c-3923b5dae27a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.textile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/saleem_siddiqui/oob/shapes/Rectangle.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/com/saleem_siddiqui/oob/shapes/TestRectangle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OOB.iml" afterPath="$PROJECT_DIR$/OOB.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.textile" afterPath="$PROJECT_DIR$/README.textile" />
     </list>
     <ignored path="OOB.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,10 +72,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="30" selection-start="3669" selection-end="3681" vertical-scroll-proportion="0.33333334">
+            <state line="111" column="30" selection-start="3669" selection-end="3681" vertical-scroll-proportion="-8.807693">
               <folding>
                 <element signature="tag#patternset#0;tag#project#0" expanded="false" />
                 <element signature="tag#patternset#1;tag#project#0" expanded="false" />
@@ -102,10 +94,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.textile" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="README.textile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.textile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
+            <state line="6" column="65" selection-start="224" selection-end="224" vertical-scroll-proportion="0.12396694">
               <folding />
             </state>
           </provider>
@@ -136,8 +128,8 @@
         <option value="$PROJECT_DIR$/src/com/saleem_siddiqui/oob/shapes/Rectangle.java" />
         <option value="$PROJECT_DIR$/test/com/saleem_siddiqui/oob/shapes/TestRectangle.java" />
         <option value="$PROJECT_DIR$/build.properties" />
-        <option value="$PROJECT_DIR$/README.textile" />
         <option value="$PROJECT_DIR$/build.xml" />
+        <option value="$PROJECT_DIR$/README.textile" />
       </list>
     </option>
   </component>
@@ -538,13 +530,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.textile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OOB.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -561,12 +546,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="30" selection-start="3669" selection-end="3681" vertical-scroll-proportion="0.33333334">
+        <state line="111" column="30" selection-start="3669" selection-end="3681" vertical-scroll-proportion="-8.807693">
           <folding>
             <element signature="tag#patternset#0;tag#project#0" expanded="false" />
             <element signature="tag#patternset#1;tag#project#0" expanded="false" />
             <element signature="tag#path#0;tag#project#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.textile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="65" selection-start="224" selection-end="224" vertical-scroll-proportion="0.12396694">
+          <folding />
         </state>
       </provider>
     </entry>
