@@ -30,7 +30,26 @@ public class TestRectangle {
     }
 
     @Test
+    public void twoSquaresWithSameDimensionsShouldBeEqual() {
+        assertThat(createSquare(4), equalTo(createSquare(4)));
+    }
+
+    @Test
     public void rectangleAndSquareWithSameDimensionsShouldBeEqual() {
         assertThat(createRectangle(5, 5), equalTo(createSquare(5)));
+        assertThat(createSquare(6), equalTo(createRectangle(6, 6)));
     }
+
+    @Test
+    public void shouldComputePerimeterOfRectangle() {
+        assertThat(createRectangle(4, 5).perimeter(), is(18));
+        assertThat(createRectangle(6, 7).perimeter(), is(26));
+    }
+
+    @Test
+    public void shouldComputePerimeterOfSquare() {
+        assertThat(createSquare(5).perimeter(), is(20));
+        assertThat(createSquare(6).perimeter(), is(24));
+    }
+
 }

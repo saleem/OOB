@@ -43,4 +43,8 @@ public class Rectangle {
         result = 31 * result + width;
         return result;
     }
+
+    public int perimeter() {
+        return 2 * (length + width);
+    }
 }
