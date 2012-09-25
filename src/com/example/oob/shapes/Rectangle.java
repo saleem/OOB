@@ -1,4 +1,4 @@
-package com.saleem_siddiqui.oob.shapes;
+package com.example.oob.shapes;
 
 /**
  * Created by Saleem Siddiqui on 9/18/12 at 12:27 PM

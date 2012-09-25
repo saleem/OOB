@@ -1,9 +1,9 @@
-package com.saleem_siddiqui.oob.shapes;
+package com.example.oob.shapes;
 
 import org.junit.Test;
 
-import static com.saleem_siddiqui.oob.shapes.Rectangle.createRectangle;
-import static com.saleem_siddiqui.oob.shapes.Rectangle.createSquare;
+import static com.example.oob.shapes.Rectangle.createRectangle;
+import static com.example.oob.shapes.Rectangle.createSquare;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
