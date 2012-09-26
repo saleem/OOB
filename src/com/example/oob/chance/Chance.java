@@ -7,7 +7,14 @@ public class Chance {
     private double value;
 
     public Chance(double value) {
+        verifyLegal(value);
         this.value = value;
+    }
+
+    private void verifyLegal(double value) throws IllegalProbabilityValueException {
+        if (value < 0 || value > 1) {
+            throw new IllegalProbabilityValueException("Probability value must be in the range [0,1]");
+        }
     }
 
     @Override

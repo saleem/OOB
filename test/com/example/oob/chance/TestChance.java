@@ -23,5 +23,18 @@ public class TestChance {
     @Test
     public void shouldCorrectlyDetermineProbabilityOfEventNotOccurring() {
         assertThat(new Chance(0.5).not(), equalTo(new Chance(0.5)));
+        assertThat(new Chance(0.3).not(), equalTo(new Chance(0.7)));
+        assertThat(new Chance(0.6).not(), equalTo(new Chance(0.4)));
+        assertThat(new Chance(0).not(), equalTo(new Chance(1)));
+    }
+
+    @Test(expected = IllegalProbabilityValueException.class)
+    public void shouldNotAllowProbabilityLessThanZero() {
+        new Chance(-0.001);
+    }
+
+    @Test(expected = IllegalProbabilityValueException.class)
+    public void shouldNotAllowProbabilityValueGreaterThanOne() {
+        new Chance(1.001);
     }
 }
