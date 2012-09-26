@@ -28,6 +28,20 @@ public class Chance {
         return new Chance(value.multiply(chance.value));
     }
 
+    public Chance or(Chance chance) {
+        final BigDecimal intersection = and(chance).value;
+        return new Chance(value.add(chance.value).subtract(intersection));
+    }
+
+    /**
+     * Calculates the Intersection ("OR") of this Chance and the given Chance object using DeMorgan's Law.
+     * @param chance
+     * @return a Chance object whose probability represents the Intersection of this object and the chance object
+     */
+    public Chance dor(Chance chance) {
+        return new Chance(not().and(chance.not()).value).not();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

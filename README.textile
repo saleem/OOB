@@ -4,4 +4,4 @@
 # -Commit code to github-
 # -Finish area and perimeter for Rectangle and Square-
 # -Write simple code for Chance-
-# Write code for "not", "and", "or" and DeMorgan's law for Chance
+# -Write code for "not", "and", "or" and DeMorgan's law for Chance-

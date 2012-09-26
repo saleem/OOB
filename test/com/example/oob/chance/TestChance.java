@@ -44,4 +44,16 @@ public class TestChance {
         assertThat(newChance(0.5).and(newChance(0.5)), equalTo(newChance(0.25)));
         assertThat(newChance(0.9).and(newChance(0.1)), equalTo(newChance(0.09)));
     }
+
+    @Test
+    public void shouldCorrectlyDetermineUnionOfTwoProbabilities() {
+        assertThat(newChance(0.5).or(newChance(0.5)), equalTo(newChance(0.75)));
+        assertThat(newChance(0.9).or(newChance(0.1)), equalTo(newChance(0.91)));
+    }
+
+    @Test
+    public void shouldCorrectlyDetermineUnionOfTwoProbabilitiesUsingDeMorgansLaw() {
+        assertThat(newChance(0.5).dor(newChance(0.5)), equalTo(newChance(0.75)));
+        assertThat(newChance(0.9).dor(newChance(0.1)), equalTo(newChance(0.91)));
+    }
 }
