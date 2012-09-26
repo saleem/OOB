@@ -2,6 +2,7 @@ package com.example.oob.chance;
 
 import org.junit.Test;
 
+import static com.example.oob.chance.Chance.newChance;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
@@ -12,29 +13,35 @@ import static org.junit.Assert.assertThat;
 public class TestChance {
     @Test
     public void twoChancesWithSameValueShouldBeEqual() {
-        assertThat(new Chance(0.5), equalTo(new Chance(0.5)));
+        assertThat(newChance(0.5), equalTo(newChance(0.5)));
     }
 
     @Test
     public void twoChancesWithDifferentValuesShouldBeUnequal() {
-        assertThat(new Chance(0.5), not(equalTo(new Chance(0.51))));
+        assertThat(newChance(0.5), not(equalTo(newChance(0.51))));
     }
 
     @Test
     public void shouldCorrectlyDetermineProbabilityOfEventNotOccurring() {
-        assertThat(new Chance(0.5).not(), equalTo(new Chance(0.5)));
-        assertThat(new Chance(0.3).not(), equalTo(new Chance(0.7)));
-        assertThat(new Chance(0.6).not(), equalTo(new Chance(0.4)));
-        assertThat(new Chance(0).not(), equalTo(new Chance(1)));
+        assertThat(newChance(0.5).not(), equalTo(newChance(0.5)));
+        assertThat(newChance(0.3).not(), equalTo(newChance(0.7)));
+        assertThat(newChance(0.7).not(), equalTo(newChance(0.3)));
+        assertThat(newChance(0).not(), equalTo(newChance(1)));
     }
 
     @Test(expected = IllegalProbabilityValueException.class)
     public void shouldNotAllowProbabilityLessThanZero() {
-        new Chance(-0.001);
+        newChance(-0.001);
     }
 
     @Test(expected = IllegalProbabilityValueException.class)
     public void shouldNotAllowProbabilityValueGreaterThanOne() {
-        new Chance(1.001);
+        newChance(1.001);
+    }
+
+    @Test
+    public void shouldCorrectlyDetermineIntersectionOfTwoProbabilities() {
+        assertThat(newChance(0.5).and(newChance(0.5)), equalTo(newChance(0.25)));
+        assertThat(newChance(0.9).and(newChance(0.1)), equalTo(newChance(0.09)));
     }
 }
