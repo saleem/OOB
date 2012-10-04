@@ -31,6 +31,11 @@ public class Length {
         this.magnitude = magnitude;
     }
 
+    public Length add(Length length) {
+        return createLength(Unit.INCH, convertToInches()+length.convertToInches());
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

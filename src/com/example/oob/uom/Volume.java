@@ -30,6 +30,10 @@ public class Volume {
         this.magnitude = magnitude;
     }
 
+    public Volume add(Volume volume) {
+        return createVolume(Unit.US_GALLON, convertToLiters() + volume.convertToLiters());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

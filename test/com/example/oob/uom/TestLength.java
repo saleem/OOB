@@ -46,4 +46,14 @@ public class TestLength {
         assertThat(createLength(MM, 1000), is(createLength(CM, 100)));
         assertThat(createLength(CM, 0.01), is(createLength(MM, 0.1)));
     }
+
+    @Test
+    public void shouldAddInchesToInches() {
+        assertThat(createLength(INCH, 2).add(createLength(INCH, 3)), is(createLength(INCH, 5)));
+    }
+
+    @Test
+    public void shouldAddInchesToCentimeters() {
+        assertThat(createLength(INCH, 2).add(createLength(CM, 2.54)), is(createLength(INCH, 3)));
+    }
 }

@@ -28,4 +28,9 @@ public class TestVolume {
         assertThat(createVolume(IMP_GALLON, 1), is(createVolume(US_GALLON, 1.200950491492335)));
         assertThat(createVolume(IMP_GALLON, 0.83267379220385), is(createVolume(US_GALLON, 1)));
     }
+
+    @Test
+    public void shouldAddLitersAndUSGallons() {
+        assertThat(createVolume(US_GALLON, 1).add(createVolume(LITER, 1)), is(createVolume(US_GALLON, 4.78541)));
+    }
 }
