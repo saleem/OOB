@@ -20,10 +20,6 @@ public class Length {
         Unit(double inchFactor) {
             this.inchFactor = inchFactor;
         }
-
-        public double toInches() {
-            return inchFactor;
-        }
     }
 
     public static Length createLength(Unit unit, double magnitude) {
@@ -41,13 +37,9 @@ public class Length {
         if (o == null || getClass() != o.getClass()) return false;
 
         Length length = (Length) o;
-
         return compare(length) == 0;
     }
 
-    public int compare(Length other) {
-        return Double.compare(convertToInches(), other.convertToInches());
-    }
 
     @Override
     public int hashCode() {
@@ -67,6 +59,10 @@ public class Length {
         sb.append(", magnitude=").append(magnitude);
         sb.append('}');
         return sb.toString();
+    }
+
+    private int compare(Length other) {
+        return Double.compare(convertToInches(), other.convertToInches());
     }
 
     private double convertToInches() {

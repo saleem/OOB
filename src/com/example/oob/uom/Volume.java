@@ -19,10 +19,6 @@ public class Volume {
         Unit(double literFactor) {
             this.literFactor = literFactor;
         }
-
-        public double toLiters() {
-            return literFactor;
-        }
     }
 
     public static Volume createVolume(Unit unit, double magnitude) {
@@ -40,12 +36,7 @@ public class Volume {
         if (o == null || getClass() != o.getClass()) return false;
 
         Volume volume = (Volume) o;
-
         return compare(volume) == 0;
-    }
-
-    public int compare(Volume other) {
-        return Double.compare(convertToLiters(), other.convertToLiters());
     }
 
     @Override
@@ -66,6 +57,10 @@ public class Volume {
         sb.append(", magnitude=").append(magnitude);
         sb.append('}');
         return sb.toString();
+    }
+
+    private int compare(Volume other) {
+        return Double.compare(convertToLiters(), other.convertToLiters());
     }
 
     private double convertToLiters() {
