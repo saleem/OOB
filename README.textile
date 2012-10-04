@@ -5,3 +5,10 @@
 # -Finish area and perimeter for Rectangle and Square-
 # -Write simple code for Chance-
 # -Write code for "not", "and", "or" and DeMorgan's law for Chance-
+# -Add code for unit of measure: feet and inches-
+# -UOM: inches and cm-
+# -UOM: cm and mm-
+# UOM: gallon and liters
+# UOM: add inches and inches
+# UOM: add inches and cm
+# UOM: add gallons and liters
