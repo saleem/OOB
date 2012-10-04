@@ -9,6 +9,7 @@
 # -UOM: inches and cm-
 # -UOM: cm and mm-
 # -UOM: imp gallon and liter and us gallon-
-# UOM: add inches and inches
-# UOM: add inches and cm
-# UOM: add gallons and liters
+# -UOM: add inches and inches-
+# -UOM: add inches and cm-
+# -UOM: add gallons and liters-
+# UOM: celsius and fahrenheit
