@@ -8,7 +8,7 @@
 # -Add code for unit of measure: feet and inches-
 # -UOM: inches and cm-
 # -UOM: cm and mm-
-# UOM: gallon and liters
+# -UOM: imp gallon and liter and us gallon-
 # UOM: add inches and inches
 # UOM: add inches and cm
 # UOM: add gallons and liters
