@@ -1,6 +1,8 @@
 package com.example.oob.uom;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static com.example.oob.uom.UnitOfMeasure.Unit.*;
 import static org.hamcrest.core.Is.is;
@@ -10,34 +12,37 @@ import static org.junit.Assert.assertThat;
  * Created by Saleem Siddiqui on 10/5/12 at 3:46 AM
  */
 public class TestUnitOfMeasure {
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     @Test
     public void compareFeetToOtherLengthUnits() {
         assertThat(createUOM(1.1, FOOT), is(createUOM(1.1, FOOT)));
         assertThat(createUOM(1.1, FOOT), is(createUOM(13.2, INCH)));
-        assertThat(createUOM(1.1, FOOT), is(createUOM(33.5279997787, CM)));
-        assertThat(createUOM(1.1, FOOT), is(createUOM(335.279997787, MM)));
+        assertThat(createUOM(1.1, FOOT), is(createUOM(33.528, CM)));
+        assertThat(createUOM(1.1, FOOT), is(createUOM(335.28, MM)));
     }
 
     @Test
     public void compareInchesToOtherLengthUnits() {
         assertThat(createUOM(1.1, INCH), is(createUOM(1.1, INCH)));
         assertThat(createUOM(1.1, INCH), is(createUOM(0.09166666666, FOOT)));
-        assertThat(createUOM(1.1, INCH), is(createUOM(2.7939999815, CM)));
-        assertThat(createUOM(1.1, INCH), is(createUOM(27.939999815, MM)));
+        assertThat(createUOM(1.1, INCH), is(createUOM(2.794, CM)));
+        assertThat(createUOM(1.1, INCH), is(createUOM(27.94, MM)));
     }
 
     @Test
     public void compareCentimetersToOtherLengthUnits() {
-        assertThat(createUOM(1.1, CM), is(createUOM(0.433070869, INCH)));
-        assertThat(createUOM(1.1, CM), is(createUOM(0.0360892390833, FOOT)));
+        assertThat(createUOM(1.1, CM), is(createUOM(0.433070866141732, INCH)));
+        assertThat(createUOM(1.1, CM), is(createUOM(0.036089238845144, FOOT)));
         assertThat(createUOM(1.1, CM), is(createUOM(1.1, CM)));
         assertThat(createUOM(1.1, CM), is(createUOM(11, MM)));
     }
 
     @Test
     public void compareMillimetersToOtherLengthUnits() {
-        assertThat(createUOM(1.1, MM), is(createUOM(0.0433070869, INCH)));
-        assertThat(createUOM(1.1, MM), is(createUOM(0.00360892390833, FOOT)));
+        assertThat(createUOM(1.1, MM), is(createUOM(0.0433070866141732, INCH)));
+        assertThat(createUOM(1.1, MM), is(createUOM(0.0036089238845144, FOOT)));
         assertThat(createUOM(1.1, MM), is(createUOM(0.11, CM)));
         assertThat(createUOM(1.1, MM), is(createUOM(1.1, MM)));
     }
@@ -82,6 +87,25 @@ public class TestUnitOfMeasure {
         assertThat(createUOM(1.1, FAHRENHEIT), is(createUOM(255.983333333, KELVIN)));
         assertThat(createUOM(1.1, FAHRENHEIT), is(createUOM(-17.166666666, CELSIUS)));
         assertThat(createUOM(1.1, FAHRENHEIT), is(createUOM(1.1, FAHRENHEIT)));
+    }
+
+    @Test
+    public void addFeetToOtherLengthUnits() {
+        assertThat(createUOM(1.1, FOOT).add(createUOM(1.1, FOOT)), is(createUOM(2.2, FOOT)));
+    }
+
+    @Test
+    public void cannotAddLengthAndVolume() {
+        thrown.expect(IllegalOperationException.class);
+        thrown.expectMessage("Cannot add a LENGTH to a VOLUME!");
+        createUOM(1, FOOT).add(createUOM(1, LITER));
+    }
+
+    @Test
+    public void cannotAddTwoTemperatureUnits() {
+        thrown.expect(IllegalOperationException.class);
+        thrown.expectMessage("Cannot perform arithmetic operation on a TEMPERATURE!");
+        createUOM(1.1, FAHRENHEIT).add(createUOM(1.1, CELSIUS));
     }
 
     private UnitOfMeasure createUOM(double magnitude, UnitOfMeasure.Unit unit) {

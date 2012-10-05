@@ -2,7 +2,8 @@ package com.example.oob.uom;
 
 import java.text.DecimalFormat;
 
-import static com.example.oob.uom.UnitOfMeasure.PhysicalProperty.*;
+import static com.example.oob.uom.UnitOfMeasure.Measurement.*;
+import static com.example.oob.uom.UnitOfMeasure.MeasurementType.*;
 
 /**
  * Created by Saleem Siddiqui on 10/5/12 at 3:47 AM
@@ -13,30 +14,35 @@ public class UnitOfMeasure {
     private final Unit unit;
     private static DecimalFormat SCALE = new DecimalFormat("#.########");
 
+    public static enum MeasurementType {
+        INTERVAL, ARITHMETIC
+    }
 
-    /**
-     * Physical properties that can be measured.
-     */
-    public static enum PhysicalProperty {
-        LENGTH, VOLUME, TEMPERATURE
+    public static enum Measurement {
+        LENGTH(ARITHMETIC), VOLUME(ARITHMETIC), TEMPERATURE(INTERVAL);
+        private final MeasurementType type;
+
+        Measurement(MeasurementType type) {
+            this.type = type;
+        }
     }
 
     /**
-     * Units for various PhysicalProperty objects.
+     * Units for various Measurement objects.
      * Each Unit has three attributes:
      * <ol>
      *     <li>Factor: a positive number which is the answer to this question "what is the ratio between a magnitude of one of <i>this</i> unit
      *     and the canonical unit?". This is always 1 for canonical unit</li>
      *     <li>Offset: a negative, zero or positive number which is the answer to this question "when <i>this</i> unit has a magnitude of zero,
      *     what is the corresponding magnitude in the canonical unit?" This is always 0 for canonical unit.</li>
-     *     <li>PhysicalProperty: the PhysicalProperty enum that this unit measures</li>
+     *     <li>Measurement: the Measurement enum that this unit measures</li>
      * </ol>
      */
     public static enum Unit {
         INCH(1D, 0, LENGTH),
         FOOT(12D, 0, LENGTH),
-        CM(0.39370079D, 0, LENGTH),
-        MM(0.039370079D, 0, LENGTH),
+        CM(1/2.54, 0, LENGTH),
+        MM(1/25.4, 0, LENGTH),
 
         LITER(1D, 0, VOLUME),
         US_GALLON(3.78541D, 0, VOLUME),
@@ -48,26 +54,44 @@ public class UnitOfMeasure {
 
         public final double factor;
         public final double offset;
-        private final PhysicalProperty physicalProperty;
+        private final Measurement measurement;
 
-        Unit(double factor, double offset, PhysicalProperty physicalProperty) {
+        Unit(double factor, double offset, Measurement measurement) {
             this.factor = factor;
             this.offset = offset;
-            this.physicalProperty = physicalProperty;
+            this.measurement = measurement;
         }
 
-        public Unit getCanonicalUnit(PhysicalProperty physicalProperty) {
+        public Unit getCanonicalUnit(Measurement measurement) {
             for (Unit unit : Unit.values()) {
-                if (unit.physicalProperty == physicalProperty && unit.factor == 1D && unit.offset == 0D) {
+                if (unit.measurement == measurement && unit.factor == 1D && unit.offset == 0D) {
                     return unit;
                 }
             }
-            throw new RuntimeException("Configuration Error: No canonical unit (with a factor of 1 and offset of 0) found for Physical Property " + physicalProperty + "!");
+            throw new RuntimeException("Configuration Error: No canonical unit (with a factor of 1 and offset of 0) found for Physical Property " + measurement + "!");
         }
     }
 
     public static UnitOfMeasure create(double magnitude, Unit unit) {
         return new UnitOfMeasure(magnitude, unit);
+    }
+
+    public UnitOfMeasure add(UnitOfMeasure uom) {
+        preventAdditionOfDifferentMeasurements(uom);
+        preventArithmeticOperationOnNonArithmeticMeasurementTypes();
+        return create(canonicalMagnitude() + uom.canonicalMagnitude(), unit.getCanonicalUnit(unit.measurement));
+    }
+
+    private void preventAdditionOfDifferentMeasurements(UnitOfMeasure uom) {
+        if(uom.unit.measurement != unit.measurement) {
+            throw new IllegalOperationException("Cannot add a " + unit.measurement + " to a " + uom.unit.measurement + "!");
+        }
+    }
+
+    private void preventArithmeticOperationOnNonArithmeticMeasurementTypes() {
+        if(unit.measurement.type != ARITHMETIC) {
+            throw new IllegalOperationException("Cannot perform arithmetic operation on a " + unit.measurement + "!");
+        }
     }
 
     @Override
@@ -76,7 +100,7 @@ public class UnitOfMeasure {
         if (o == null || getClass() != o.getClass()) return false;
 
         UnitOfMeasure that = (UnitOfMeasure) o;
-        if (unit.physicalProperty != that.unit.physicalProperty) return false;
+        if (unit.measurement != that.unit.measurement) return false;
         if (Double.compare(that.canonicalMagnitude(), canonicalMagnitude()) != 0) return false;
         return true;
     }
