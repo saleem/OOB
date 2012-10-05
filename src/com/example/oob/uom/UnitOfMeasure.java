@@ -39,18 +39,18 @@ public class UnitOfMeasure {
      * </ol>
      */
     public static enum Unit {
-        INCH(1D, 0, LENGTH),
-        FOOT(12D, 0, LENGTH),
+        INCH(1, 0, LENGTH),
+        FOOT(12, 0, LENGTH),
         CM(1/2.54, 0, LENGTH),
         MM(1/25.4, 0, LENGTH),
 
-        LITER(1D, 0, VOLUME),
-        US_GALLON(3.78541D, 0, VOLUME),
-        IMP_GALLON(4.54609D, 0, VOLUME),
+        LITER(1, 0, VOLUME),
+        US_GALLON(3.78541, 0, VOLUME),
+        IMP_GALLON(4.54609, 0, VOLUME),
 
-        KELVIN(1D, 0, TEMPERATURE),
-        CELSIUS(1D, 273.15D, TEMPERATURE),
-        FAHRENHEIT(5.0/9.0, 255.372222222D, TEMPERATURE);
+        KELVIN(1, 0, TEMPERATURE),
+        CELSIUS(1, 273.15, TEMPERATURE),
+        FAHRENHEIT(5.0/9.0, 255.372222222, TEMPERATURE);
 
         public final double factor;
         public final double offset;
@@ -101,8 +101,7 @@ public class UnitOfMeasure {
 
         UnitOfMeasure that = (UnitOfMeasure) o;
         if (unit.measurement != that.unit.measurement) return false;
-        if (Double.compare(that.canonicalMagnitude(), canonicalMagnitude()) != 0) return false;
-        return true;
+        return Double.compare(that.canonicalMagnitude(), canonicalMagnitude()) == 0;
     }
 
     @Override
