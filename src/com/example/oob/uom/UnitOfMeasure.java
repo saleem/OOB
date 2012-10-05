@@ -11,7 +11,7 @@ public class UnitOfMeasure {
 
     private final double magnitude;
     private final Unit unit;
-    private static DecimalFormat SCALE = new DecimalFormat("#.######");
+    private static DecimalFormat SCALE = new DecimalFormat("#.########");
 
 
     /**
@@ -25,9 +25,10 @@ public class UnitOfMeasure {
      * Units for various PhysicalProperty objects.
      * Each Unit has three attributes:
      * <ol>
-     *     <li>Factor: a positive number representing the ratio of this unit to the canonical unit (always 1 for canonical unit)</li>
-     *     <li>Offset: a negative, zero or positive number which must be added after the factor is applied to the canonical unit
-     *         to derive this unit (always 0 for canonical unit)</li>
+     *     <li>Factor: a positive number which is the answer to this question "what is the ratio between a magnitude of one of <i>this</i> unit
+     *     and the canonical unit?". This is always 1 for canonical unit</li>
+     *     <li>Offset: a negative, zero or positive number which is the answer to this question "when <i>this</i> unit has a magnitude of zero,
+     *     what is the corresponding magnitude in the canonical unit?" This is always 0 for canonical unit.</li>
      *     <li>PhysicalProperty: the PhysicalProperty enum that this unit measures</li>
      * </ol>
      */
@@ -42,8 +43,8 @@ public class UnitOfMeasure {
         IMP_GALLON(4.54609D, 0, VOLUME),
 
         KELVIN(1D, 0, TEMPERATURE),
-        CELSIUS(1D, -273.15D, TEMPERATURE),
-        FAHRENHEIT(1.8D, -459.67D, TEMPERATURE);
+        CELSIUS(1D, 273.15D, TEMPERATURE),
+        FAHRENHEIT(5.0/9.0, 255.372222222D, TEMPERATURE);
 
         public final double factor;
         public final double offset;
