@@ -57,28 +57,28 @@ public class TestUnitOfMeasure {
     }
 
     @Test
-    public void shouldBeAbleToCompareImperialGallonsToOtherVolumeUnits() {
+    public void compareImperialGallonsToOtherVolumeUnits() {
         assertThat(createUOM(1.1, IMP_GALLON), is(createUOM(5.000699, LITER)));
         assertThat(createUOM(1.1, IMP_GALLON), is(createUOM(1.321045540641, US_GALLON)));
         assertThat(createUOM(1.1, IMP_GALLON), is(createUOM(1.1, IMP_GALLON)));
     }
 
     @Test
-    public void shouldBeAbleToCompareKelvinToOtherTemperatureUnits() {
+    public void compareKelvinToOtherTemperatureUnits() {
         assertThat(createUOM(1.1, KELVIN), is(createUOM(1.1, KELVIN)));
         assertThat(createUOM(1.1, KELVIN), is(createUOM(-272.05, CELSIUS)));
         assertThat(createUOM(1.1, KELVIN), is(createUOM(-457.69, FAHRENHEIT)));
     }
 
     @Test
-    public void shouldBeAbleToCompareCelsiusToOtherTemperatureUnits() {
+    public void compareCelsiusToOtherTemperatureUnits() {
         assertThat(createUOM(1.1, CELSIUS), is(createUOM(274.25, KELVIN)));
         assertThat(createUOM(1.1, CELSIUS), is(createUOM(1.1, CELSIUS)));
         assertThat(createUOM(1.1, CELSIUS), is(createUOM(33.98, FAHRENHEIT)));
     }
 
     @Test
-    public void shouldBeAbleToCompareFahrenheitToOtherTemperatureUnits() {
+    public void compareFahrenheitToOtherTemperatureUnits() {
         assertThat(createUOM(1.1, FAHRENHEIT), is(createUOM(255.983333333, KELVIN)));
         assertThat(createUOM(1.1, FAHRENHEIT), is(createUOM(-17.166666666, CELSIUS)));
         assertThat(createUOM(1.1, FAHRENHEIT), is(createUOM(1.1, FAHRENHEIT)));
