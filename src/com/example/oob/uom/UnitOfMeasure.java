@@ -77,20 +77,25 @@ public class UnitOfMeasure {
     }
 
     public UnitOfMeasure add(UnitOfMeasure uom) {
-        preventAdditionOfDifferentMeasurements(uom);
-        preventArithmeticOperationOnNonArithmeticMeasurementTypes();
+        preventAnyComparisionOfDifferentMeasurements(uom);
         return create(canonicalMagnitude() + uom.canonicalMagnitude(), unit.getCanonicalUnit(unit.measurement));
     }
 
-    private void preventAdditionOfDifferentMeasurements(UnitOfMeasure uom) {
+    public void multiply(UnitOfMeasure uom) {
+        preventAnyComparisionOfDifferentMeasurements(uom);
+        preventArithmeticOperationOnNonArithmeticMeasurementTypes();
+
+    }
+
+    private void preventAnyComparisionOfDifferentMeasurements(UnitOfMeasure uom) {
         if(uom.unit.measurement != unit.measurement) {
-            throw new IllegalOperationException("Cannot add a " + unit.measurement + " to a " + uom.unit.measurement + "!");
+            throw new IllegalOperationException("Cannot perform any meaningful operation between a " + unit.measurement + " and a " + uom.unit.measurement + "!");
         }
     }
 
     private void preventArithmeticOperationOnNonArithmeticMeasurementTypes() {
         if(unit.measurement.type != ARITHMETIC) {
-            throw new IllegalOperationException("Cannot perform arithmetic operation on a " + unit.measurement + "!");
+            throw new IllegalOperationException("Cannot perform multiplication on a " + unit.measurement + "!");
         }
     }
 

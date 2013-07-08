@@ -97,15 +97,15 @@ public class TestUnitOfMeasure {
     @Test
     public void cannotAddLengthAndVolume() {
         thrown.expect(IllegalOperationException.class);
-        thrown.expectMessage("Cannot add a LENGTH to a VOLUME!");
+        thrown.expectMessage("Cannot perform any meaningful operation between a LENGTH and a VOLUME!");
         createUOM(1, FOOT).add(createUOM(1, LITER));
     }
 
     @Test
-    public void cannotAddTwoTemperatureUnits() {
+    public void cannotMultiplyTwoTemperatureUnits() {
         thrown.expect(IllegalOperationException.class);
-        thrown.expectMessage("Cannot perform arithmetic operation on a TEMPERATURE!");
-        createUOM(1.1, FAHRENHEIT).add(createUOM(1.1, CELSIUS));
+        thrown.expectMessage("Cannot perform multiplication on a TEMPERATURE!");
+        createUOM(1.1, FAHRENHEIT).multiply(createUOM(1.1, CELSIUS));
     }
 
     private UnitOfMeasure createUOM(double magnitude, UnitOfMeasure.Unit unit) {
